@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class Group {
 
     @Id
-    private int id;
+    private Integer id;
     private  String uuid;
 
     private String name;
@@ -35,6 +35,7 @@ public class Group {
     private String updatedBy;
 
     public Group(int id, String uuid, String name, GroupType type, String email, String phoneNumber, String configs, GroupStatus status, LocalDate createdOn, LocalDate updatedOn, String createdBy, String updatedBy) {
+        super();
         this.id = id;
         this.uuid = uuid;
         this.name = name;
@@ -116,7 +117,9 @@ public class Group {
         this.status = status;
     }
 
-    public LocalDate getCreatedOn() {
+    public LocalDate
+
+    getCreatedOn() {
         return createdOn;
     }
 

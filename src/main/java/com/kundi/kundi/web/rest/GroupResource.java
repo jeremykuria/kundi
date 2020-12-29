@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/group")
@@ -26,13 +27,13 @@ public class GroupResource {
     }
 
     @GetMapping("/{id}")
-    public Group getGroup(@PathVariable Integer id){
+    public Optional getGroup(@PathVariable Integer id){
        return this.groupService.getGroup(id);
     }
 
     @GetMapping("/all")
     public List<Group> getAllGroups(){
-        return this.groupService.getAllGroups();
+        return this.groupService.getGrps();
     }
 
     @GetMapping("/groups")
@@ -44,6 +45,11 @@ public class GroupResource {
     @PutMapping("/update}")
     public  void updateGroup(@RequestBody Group group){
         this.groupService.addGroup(group);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public  void updateGroup(@PathVariable Integer id){
+        this.groupService.deleteGroup(id);
     }
 
 
