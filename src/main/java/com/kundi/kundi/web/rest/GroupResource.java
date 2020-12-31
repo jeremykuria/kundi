@@ -2,6 +2,7 @@ package com.kundi.kundi.web.rest;
 
 import com.kundi.kundi.domain.Group;
 import com.kundi.kundi.service.GroupService;
+import com.kundi.kundi.service.errors.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,12 @@ public class GroupResource {
 
     @GetMapping("/{id}")
     public Optional getGroup(@PathVariable Integer id){
-       return this.groupService.getGroup(id);
+       Optional group =  this.groupService.getGroup(id);
+       if(group ==  null){
+        throw new NotFoundException("Resource not found");
+       }
+
+       return group;
     }
 
     @GetMapping("/all")

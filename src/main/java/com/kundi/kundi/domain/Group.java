@@ -3,14 +3,15 @@ package com.kundi.kundi.domain;
 import com.kundi.kundi.domain.enumeration.GroupStatus;
 import com.kundi.kundi.domain.enumeration.GroupType;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Table(name="tbl_groups")
 public class Group {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private  String uuid;
 
@@ -150,4 +151,6 @@ public class Group {
     public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
+
+
 }
