@@ -23,7 +23,7 @@ public class GroupResource {
 
     @PostMapping("/register")
     public void registerGroup(@RequestBody Group group){
-        log.info("Request to save group: {}", group);
+        log.debug("Request to save group: {}", group);
         groupService.addGroup(group);
     }
 
