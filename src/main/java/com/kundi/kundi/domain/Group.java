@@ -4,6 +4,8 @@ import com.kundi.kundi.domain.enumeration.GroupStatus;
 import com.kundi.kundi.domain.enumeration.GroupType;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
@@ -11,20 +13,25 @@ import java.time.LocalDate;
 public class Group {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private  String uuid;
 
     private String name;
 
+    @Enumerated(EnumType.STRING)
     private GroupType type;
 
+    @Email
+    @Size(min = 5, max = 100)
+    @Column(length = 100, unique = true)
     private String email;
 
     private  String phoneNumber;
 
     private String configs;
 
+    @Enumerated(EnumType.STRING)
     private GroupStatus status;
 
     private LocalDate createdOn;
