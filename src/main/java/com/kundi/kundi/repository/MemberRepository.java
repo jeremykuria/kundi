@@ -12,4 +12,5 @@ public interface MemberRepository extends CrudRepository<Member, Integer> {
     Optional<Member> findByEmailIgnoreCase(String email);
     Optional<Member> findByPhoneNumber(String phoneNumber);
 
+    List<Member> findByEmailContaining(String s);
 }

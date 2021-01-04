@@ -76,31 +76,6 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
-    public Member(Integer id, @Size(min = 3, max = 100) String fName, @Size(min = 3, max = 100) String lName, LocalDate dateOfBirth, @Email @Size(min = 5, max = 100) String email, String phoneNumber, String idNumber, String configs, Group group, @NotNull String passwordHash, @Size(max = 20) String resetKey, String resetDate, @NotNull boolean activated, @NotNull Boolean enabled, Integer loginTrials, String lastLogin, @Size(max = 256) String profileImageUrl, String createdBy, String createdOn, String lastUpdatedBy, String lastUpdatedOn, Authority authority) {
-        this.id = id;
-        this.fName = fName;
-        this.lName = lName;
-        this.dateOfBirth = dateOfBirth;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.idNumber = idNumber;
-        this.configs = configs;
-        this.groupId = groupId;
-        this.passwordHash = passwordHash;
-        this.resetKey = resetKey;
-        this.resetDate = resetDate;
-        this.activated = activated;
-        this.enabled = enabled;
-        this.loginTrials = loginTrials;
-        this.lastLogin = lastLogin;
-        this.profileImageUrl = profileImageUrl;
-        this.createdBy = createdBy;
-        this.createdOn = createdOn;
-        this.lastUpdatedBy = lastUpdatedBy;
-        this.lastUpdatedOn = lastUpdatedOn;
-        this.authority = authority;
-    }
-
     public Integer getId() {
         return id;
     }

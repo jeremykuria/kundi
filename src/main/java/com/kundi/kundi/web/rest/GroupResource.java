@@ -1,8 +1,10 @@
 package com.kundi.kundi.web.rest;
 
 import com.kundi.kundi.domain.Group;
+import com.kundi.kundi.security.error.EmailAlreadyUsedException;
 import com.kundi.kundi.service.GroupService;
 import com.kundi.kundi.service.errors.NotFoundException;
+import com.kundi.kundi.web.vm.RegisterGroupVM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +24,9 @@ public class GroupResource {
     }
 
     @PostMapping("/register")
-    public void registerGroup(@RequestBody Group group){
-        log.debug("Request to save group: {}", group);
-        groupService.addGroup(group);
+    public void registerGroup(@RequestBody RegisterGroupVM registerGroupVM) throws EmailAlreadyUsedException {
+        log.debug("Request to save group: {}", registerGroupVM);
+        groupService.registerGroup(registerGroupVM);
     }
 
     @GetMapping("/{id}")
