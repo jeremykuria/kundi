@@ -33,12 +33,12 @@ public class Member {
     private String idNumber;
 
     private String configs;
-    @ManyToOne
-    private Group group;
+
+
+    private Integer groupId;
 
 
     @JsonIgnore
-    @NotNull
     private String passwordHash;
 
     @Size(max = 20)
@@ -75,6 +75,31 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     private Authority authority;
+
+    public Member(Integer id, @Size(min = 3, max = 100) String fName, @Size(min = 3, max = 100) String lName, LocalDate dateOfBirth, @Email @Size(min = 5, max = 100) String email, String phoneNumber, String idNumber, String configs, Group group, @NotNull String passwordHash, @Size(max = 20) String resetKey, String resetDate, @NotNull boolean activated, @NotNull Boolean enabled, Integer loginTrials, String lastLogin, @Size(max = 256) String profileImageUrl, String createdBy, String createdOn, String lastUpdatedBy, String lastUpdatedOn, Authority authority) {
+        this.id = id;
+        this.fName = fName;
+        this.lName = lName;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.idNumber = idNumber;
+        this.configs = configs;
+        this.groupId = groupId;
+        this.passwordHash = passwordHash;
+        this.resetKey = resetKey;
+        this.resetDate = resetDate;
+        this.activated = activated;
+        this.enabled = enabled;
+        this.loginTrials = loginTrials;
+        this.lastLogin = lastLogin;
+        this.profileImageUrl = profileImageUrl;
+        this.createdBy = createdBy;
+        this.createdOn = createdOn;
+        this.lastUpdatedBy = lastUpdatedBy;
+        this.lastUpdatedOn = lastUpdatedOn;
+        this.authority = authority;
+    }
 
     public Integer getId() {
         return id;
@@ -140,12 +165,12 @@ public class Member {
         this.configs = configs;
     }
 
-    public Group getGroup() {
-        return group;
+    public Integer getGroupId() {
+        return groupId;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setGroupId(Integer groupId) {
+        this.groupId = groupId;
     }
 
     public String getPasswordHash() {
@@ -263,7 +288,7 @@ public class Member {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", idNumber='" + idNumber + '\'' +
                 ", configs='" + configs + '\'' +
-                ", group=" + group +
+                ", group=" + groupId +
                 ", passwordHash='" + passwordHash + '\'' +
                 ", resetKey='" + resetKey + '\'' +
                 ", resetDate='" + resetDate + '\'' +
