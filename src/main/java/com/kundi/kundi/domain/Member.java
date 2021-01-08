@@ -15,6 +15,7 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Integer id;
+    private  String uuid;
 
     @Size(min = 3, max = 100)
     private  String fName;
@@ -252,10 +253,19 @@ public class Member {
         this.authority = authority;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
     @Override
     public String toString() {
-        return "member{" +
+        return "Member{" +
                 "id=" + id +
+                ", uuid='" + uuid + '\'' +
                 ", fName='" + fName + '\'' +
                 ", lName='" + lName + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
@@ -263,7 +273,7 @@ public class Member {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", idNumber='" + idNumber + '\'' +
                 ", configs='" + configs + '\'' +
-                ", group=" + groupId +
+                ", groupId=" + groupId +
                 ", passwordHash='" + passwordHash + '\'' +
                 ", resetKey='" + resetKey + '\'' +
                 ", resetDate='" + resetDate + '\'' +
