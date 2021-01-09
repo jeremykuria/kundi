@@ -1,0 +1,6 @@
+application:
+  jwt-secret: 9487f4b8-d71d-11ea-87d0-0242ac130003
+  token-validity-in-seconds: 43200
+  token-validity-in-seconds-for-remember-me: 86400
+  base-url: http://localhost:4200
+  notification-url: http://51.15.233.87:15432/message/queue

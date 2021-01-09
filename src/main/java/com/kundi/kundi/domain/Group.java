@@ -42,26 +42,7 @@ public class Group {
 
     private String updatedBy;
 
-    public Group(int id, String uuid, String name, GroupType type, String email, String phoneNumber, String configs, GroupStatus status, LocalDate createdOn, LocalDate updatedOn, String createdBy, String updatedBy) {
-        super();
-        this.id = id;
-        this.uuid = uuid;
-        this.name = name;
-        this.type = type;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.configs = configs;
-        this.status = status;
-        this.createdOn = createdOn;
-        this.updatedOn = updatedOn;
-        this.createdBy = createdBy;
-        this.updatedBy = updatedBy;
-    }
-
-    public Group() {
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
