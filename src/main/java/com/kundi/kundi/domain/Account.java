@@ -3,7 +3,6 @@ package com.kundi.kundi.domain;
 import com.kundi.kundi.domain.enumeration.AccountType;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "tbl_accounts")
@@ -37,6 +36,13 @@ public class Account {
     private String createdBy;
 
     private String updatedBy;
+
+    public Account(Long byId) {
+    }
+
+    public Account() {
+
+    }
 
     public Long getId() {
         return id;

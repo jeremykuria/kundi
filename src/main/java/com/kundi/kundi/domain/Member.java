@@ -77,6 +77,13 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
+    public Member(Integer memberId) {
+    }
+
+    public Member() {
+
+    }
+
     public Integer getId() {
         return id;
     }

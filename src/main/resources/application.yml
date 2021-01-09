@@ -4,3 +4,5 @@ application:
   token-validity-in-seconds-for-remember-me: 86400
   base-url: http://localhost:4200
   notification-url: http://51.15.233.87:15432/message/queue
+  alert-source-sms-address: SMSAfrica
+  alert-source-email-address: alerts@meliora.tech

@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -29,9 +30,23 @@ public class AccountService {
 
     public Account addGroupAccount(Account account){
 
-        return this.accountRepository.save(account);
+       return this.accountRepository.save(account);
+
     }
 
+
+    public Optional<Account> getAccountById(Long accountId) {
+
+        return this.accountRepository.findById(accountId);
+    }
+
+    public void updateAccountBalance(Long accountId, double amount) {
+        Optional<Account> account = Optional.of(new Account(accountId));
+
+        account.get().setBalance(account.get().getBalance() + amount);
+
+
+    }
 
 
 }

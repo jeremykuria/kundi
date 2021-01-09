@@ -5,7 +5,6 @@ import com.kundi.kundi.domain.enumeration.TransactionStatus;
 import com.kundi.kundi.domain.enumeration.TransactionType;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "tbl_transactions")
@@ -14,16 +13,23 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Integer id;
-    private LocalDate transactionTime;
+
+    private  String uuid;
+
+    private String transactionTime;
+
     private double amount;
+
     private String reference;
+
     private String configs;
+
     private String reason;
 
-    @ManyToOne
-    private Member member;
+    private Integer memberId;
 
     private Long groupId;
+
 
     @Enumerated(EnumType.STRING)
     private TransationMethod method;
@@ -34,6 +40,10 @@ public class Transaction {
     @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
 
+    private Long accountId;
+
+    private String mac;
+
     public Integer getId() {
         return id;
     }
@@ -42,11 +52,11 @@ public class Transaction {
         this.id = id;
     }
 
-    public LocalDate getTransactionTime() {
+    public String getTransactionTime() {
         return transactionTime;
     }
 
-    public void setTransactionTime(LocalDate transactionTime) {
+    public void setTransactionTime(String transactionTime) {
         this.transactionTime = transactionTime;
     }
 
@@ -82,12 +92,20 @@ public class Transaction {
         this.reason = reason;
     }
 
-    public Member getMember() {
-        return member;
+    public String getUuid() {
+        return uuid;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public Integer getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Integer memberId) {
+        this.memberId = memberId;
     }
 
     public Long getGroupId() {
@@ -122,21 +140,39 @@ public class Transaction {
         this.transactionType = transactionType;
     }
 
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
+    }
+
+    public String getMac() {
+        return mac;
+    }
+
+    public void setMac(String mac) {
+        this.mac = mac;
+    }
 
     @Override
     public String toString() {
         return "Transaction{" +
                 "id=" + id +
+                ", uuid='" + uuid + '\'' +
                 ", transactionTime=" + transactionTime +
                 ", amount=" + amount +
                 ", reference='" + reference + '\'' +
                 ", configs='" + configs + '\'' +
                 ", reason='" + reason + '\'' +
-                ", member=" + member +
+                ", memberId=" + memberId +
                 ", groupId=" + groupId +
                 ", method=" + method +
                 ", status=" + status +
                 ", transactionType=" + transactionType +
+                ", accountId=" + accountId +
+                ", mac='" + mac + '\'' +
                 '}';
     }
 }

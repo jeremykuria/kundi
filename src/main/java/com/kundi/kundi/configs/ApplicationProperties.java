@@ -12,6 +12,56 @@ public class ApplicationProperties {
 
     private String baseUrl;
     private String notificationUrl;
+    private String alertSourceSmsAddress;
+
+    private String alertSourceEmailAddress;
+
+    private String contentType;
+
+    private int connectTimeout;
+
+    private int readTimeout;
+
+
+    public int getConnectTimeout() {
+        return connectTimeout;
+    }
+
+    public void setConnectTimeout(int connectTimeout) {
+        this.connectTimeout = connectTimeout;
+    }
+
+    public int getReadTimeout() {
+        return readTimeout;
+    }
+
+    public void setReadTimeout(int readTimeout) {
+        this.readTimeout = readTimeout;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public String getAlertSourceEmailAddress() {
+        return alertSourceEmailAddress;
+    }
+
+    public void setAlertSourceEmailAddress(String alertSourceEmailAddress) {
+        this.alertSourceEmailAddress = alertSourceEmailAddress;
+    }
+
+    public String getAlertSourceSmsAddress() {
+        return alertSourceSmsAddress;
+    }
+
+    public void setAlertSourceSmsAddress(String alertSourceSmsAddress) {
+        this.alertSourceSmsAddress = alertSourceSmsAddress;
+    }
 
     public String getJwtSecret() {
         return jwtSecret;
@@ -52,4 +102,6 @@ public class ApplicationProperties {
     public void setNotificationUrl(String notificationUrl) {
         this.notificationUrl = notificationUrl;
     }
+
+
 }
