@@ -15,7 +15,7 @@ public class Account {
 
     private String uuid;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private AccountType accountType;
 
     private String name;
@@ -30,9 +30,9 @@ public class Account {
 
     private Integer groupId;
 
-    private LocalDate createdOn;
+    private String createdOn;
 
-    private LocalDate updatedOn;
+    private String updatedOn;
 
     private String createdBy;
 
@@ -110,19 +110,19 @@ public class Account {
         this.groupId = groupId;
     }
 
-    public LocalDate getCreatedOn() {
+    public String getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(LocalDate createdOn) {
+    public void setCreatedOn(String createdOn) {
         this.createdOn = createdOn;
     }
 
-    public LocalDate getUpdatedOn() {
+    public String getUpdatedOn() {
         return updatedOn;
     }
 
-    public void setUpdatedOn(LocalDate updatedOn) {
+    public void setUpdatedOn(String updatedOn) {
         this.updatedOn = updatedOn;
     }
 

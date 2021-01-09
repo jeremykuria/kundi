@@ -1,10 +1,13 @@
 package com.kundi.kundi.service;
 
+import com.kundi.kundi.domain.Account;
 import com.kundi.kundi.domain.Group;
 import com.kundi.kundi.domain.Member;
+import com.kundi.kundi.domain.enumeration.AccountType;
 import com.kundi.kundi.domain.enumeration.Authority;
 import com.kundi.kundi.domain.enumeration.GroupStatus;
 import com.kundi.kundi.domain.enumeration.GroupType;
+import com.kundi.kundi.repository.AccountRepository;
 import com.kundi.kundi.repository.GroupRepository;
 import com.kundi.kundi.repository.MemberRepository;
 import com.kundi.kundi.security.error.EmailAlreadyUsedException;
@@ -28,12 +31,14 @@ public class GroupService {
     private final GroupRepository groupRepository;
     private final MemberRepository memberRepository;
     private  final MailService mailService;
+    private  final AccountRepository accountRepository;
     //private  final PasswordEncoder passwordEncoder;
 
-    public GroupService(GroupRepository groupRepository, MemberRepository memberRepository, MailService mailService) {
+    public GroupService(GroupRepository groupRepository, MemberRepository memberRepository, MailService mailService, AccountRepository accountRepository) {
         this.groupRepository = groupRepository;
         this.memberRepository = memberRepository;
         this.mailService = mailService;
+        this.accountRepository =  accountRepository;
        // this.passwordEncoder = passwordEncoder;
     }
 
@@ -82,6 +87,20 @@ public class GroupService {
         group.setUuid(UUID.randomUUID().toString());
 
         Group registeredGroup = groupRepository.save(group);
+
+        //create MAIN ACCOUNT
+
+        Account account = new Account();
+        account.setGroupId(registeredGroup.getId());
+        account.setName(registeredGroup.getName() + " Main Account");
+        account.setBalance(0.0);
+        account.setCurrencyCode("KES");
+        account.setAccountType(AccountType.MAIN);
+        account.setCreatedOn(LocalDate.now().toString());
+        account.setUuid(UUID.randomUUID().toString());
+
+        log.info("Registering Account: {}", account);
+        accountRepository.save(account);
 
         log.info("Registered Group: {}", registeredGroup);
         Member member =  new Member();

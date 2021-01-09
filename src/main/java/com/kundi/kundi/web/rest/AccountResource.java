@@ -32,7 +32,7 @@ public class AccountResource {
     public Account addGroupAccount(Account account){
 
         log.info("Request to Save Account: {}", account);
-        
+
         return  this.accountService.addGroupAccount(account);
     }
 }
