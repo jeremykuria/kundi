@@ -23,24 +23,30 @@ public class NotificationUtil {
 
     public int sendSMS(String to, String content, String referenceId) {
         log.info("Send sms to '{}' with content={}", to, content);
+        log.info("Send sms to '{}' with content={}", to, content);
 
         Map<String, String> messageMap = new HashMap<>();
-        messageMap.put("destinationAddress", to);
-        messageMap.put("sourceAddress", applicationProperties.getAlertSourceSmsAddress());
-        messageMap.put("messageType", AlertType.SMS.name());
+        messageMap.put("to", to);
+        messageMap.put("from", applicationProperties.getAlertSourceSmsAddress());
+        //messageMap.put("messageType", AlertType.SMS.name());
         messageMap.put("message", content);
-        messageMap.put("referenceId", referenceId);
+        messageMap.put("refId", referenceId);
 
 
         ObjectMapper objectMapper = new ObjectMapper();
-        log.debug("Request to send SMS : {}", messageMap);
+        log.info("Request to send SMS : {}", messageMap);
         String jsonRequest = null;
         try {
             jsonRequest = objectMapper.writeValueAsString(messageMap);
+            log.info("Request body : {}", jsonRequest);
 
             Map<String, String> headers = new HashMap<>();
+            log.info("Request headers : {}", headers);
+            // headers.put("Content-Type:","application/json");
 
-            HTTPResponse httpResponse = HTTPClient.send(applicationProperties.getNotificationUrl(), jsonRequest, "POST", applicationProperties.getContentType(), headers, applicationProperties.getConnectTimeout(), applicationProperties.getReadTimeout());
+
+            //HTTPResponse httpResponse = HTTPClient.send(applicationProperties.getNotificationUrl(), jsonRequest, "POST", applicationProperties.getContentType(), headers, applicationProperties.getConnectTimeout(), applicationProperties.getReadTimeout());
+            HTTPResponse httpResponse = HTTPClient.send(applicationProperties.getNotificationUrl(), jsonRequest, "POST", applicationProperties.getContentType(), headers, applicationProperties.getConnectTimeout(), applicationProperties.getReadTimeout(),applicationProperties.getAuthorizationToken());
 
             Map<String, String> responseBody = objectMapper.readValue(httpResponse.getBody(), new TypeReference<Map<String, String>>() {
             });
@@ -81,7 +87,7 @@ public class NotificationUtil {
             Map<String, String> headers = new HashMap<>();
 
             log.info("JsonRequest: {}", jsonRequest);
-            HTTPResponse httpResponse = HTTPClient.send(applicationProperties.getNotificationUrl(), jsonRequest, "POST", applicationProperties.getContentType(), headers, applicationProperties.getConnectTimeout(), applicationProperties.getReadTimeout());
+            HTTPResponse httpResponse = HTTPClient.send(applicationProperties.getNotificationUrl(), jsonRequest, "POST", applicationProperties.getContentType(), headers, applicationProperties.getConnectTimeout(), applicationProperties.getReadTimeout(),applicationProperties.getAuthorizationToken());
 
             Map<String, String> responseBody = objectMapper.readValue(httpResponse.getBody(), new TypeReference<Map<String, String>>() {
             });

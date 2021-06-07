@@ -22,6 +22,7 @@ public class ApplicationProperties {
 
     private int readTimeout;
 
+    private String authorizationToken;
 
     public int getConnectTimeout() {
         return connectTimeout;
@@ -103,5 +104,11 @@ public class ApplicationProperties {
         this.notificationUrl = notificationUrl;
     }
 
+    public String getAuthorizationToken() {
+        return authorizationToken;
+    }
 
+    public void setAuthorizationToken(String authorizationToken) {
+        this.authorizationToken = authorizationToken;
+    }
 }

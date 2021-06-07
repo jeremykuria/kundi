@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class HTTPClient {
 
-    public static HTTPResponse send(String url, String request, String method, String contentType, Map<String, String> headers, int connectTimeout, int readTimeout) throws IOException {
+    public static HTTPResponse send(String url, String request, String method, String contentType, Map<String, String> headers, int connectTimeout, int readTimeout,String authorizationToken) throws IOException {
 
         URL obj = new URL(url);
 
@@ -34,8 +34,10 @@ public class HTTPClient {
             //add reuqest header
             connection.setRequestMethod(method);
             connection.setRequestProperty("Content-Type", contentType);
-            connection.setConnectTimeout(connectTimeout);
-            connection.setReadTimeout(readTimeout);
+            //            headers.put("Authorization:","Bearer mtest-d83f38dd-2bb8-4f3f-b99b-e05b28c3ff9f");
+            connection.setRequestProperty("Authorization", authorizationToken);
+            //connection.setConnectTimeout(connectTimeout);
+            //connection.setReadTimeout(readTimeout);
 
             if (headers != null) {
                 headers.forEach(connection::setRequestProperty);
@@ -58,7 +60,7 @@ public class HTTPClient {
                 }
             }
         } else {
-            // https
+            // http
 
             HttpURLConnection connection;
 
@@ -66,9 +68,9 @@ public class HTTPClient {
 
             //add reuqest header
             connection.setRequestMethod(method);
-            connection.setRequestProperty("Content-Type", contentType);
-            connection.setConnectTimeout(connectTimeout);
-            connection.setReadTimeout(readTimeout);
+            //connection.setRequestProperty("Content-Type", contentType);
+           // connection.setConnectTimeout(connectTimeout);
+            //connection.setReadTimeout(readTimeout);
 
             if (headers != null) {
                 headers.forEach(connection::setRequestProperty);

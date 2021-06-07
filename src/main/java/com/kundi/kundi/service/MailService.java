@@ -70,7 +70,7 @@ public class MailService {
 
             Map<String, String> headers = new HashMap<>();
 
-            HTTPResponse httpResponse = HTTPClient.send(applicationProperties.getNotificationUrl(), jsonRequest, "POST", "application/json", headers, 2000, 5000);
+            HTTPResponse httpResponse = HTTPClient.send(applicationProperties.getNotificationUrl(), jsonRequest, "POST", "application/json", headers, 2000, 5000,applicationProperties.getAuthorizationToken());
 
             Map<String, String> responseBody = objectMapper.readValue(httpResponse.getBody(), new TypeReference<Map<String, String>>() {
             });

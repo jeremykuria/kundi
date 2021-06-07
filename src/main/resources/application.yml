@@ -3,6 +3,11 @@ application:
   token-validity-in-seconds: 43200
   token-validity-in-seconds-for-remember-me: 86400
   base-url: http://localhost:4200
-  notification-url: http://51.15.233.87:15432/message/queue
+  # notification-url: http://51.15.233.87:15432/message/queue
+  notification-url: https://onehop.meliora.co.ke/api/sendsms/index.php
   alert-source-sms-address: SMSAfrica
   alert-source-email-address: alerts@meliora.tech
+  content-type: application/json
+  connect-timeout: 2000
+  read-timeout: 5000
+  authorization-token: Bearer mtest-d83f38dd-2bb8-4f3f-b99b-e05b28c3ff9f
