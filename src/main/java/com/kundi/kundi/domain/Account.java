@@ -3,6 +3,7 @@ package com.kundi.kundi.domain;
 import com.kundi.kundi.domain.enumeration.AccountType;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Table(name = "tbl_accounts")
@@ -41,6 +42,10 @@ public class Account {
     }
 
     public Account() {
+
+    }
+
+    public Account(Optional<Account> accountById) {
 
     }
 

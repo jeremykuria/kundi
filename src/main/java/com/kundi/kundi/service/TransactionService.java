@@ -27,12 +27,14 @@ public class TransactionService {
     private  final AccountRepository accountRepository;
     private final NotificationUtil notificationUtil;
     private final MemberRepository memberRepository;
+    private final AccountService accountService;
 
     public TransactionService(TransactionRepository transactionRepository, AccountService accountService, AccountRepository accountRepository, NotificationUtil notificationUtil, MemberRepository memberRepository) {
         this.transactionRepository = transactionRepository;
         this.accountRepository = accountRepository;
         this.notificationUtil = notificationUtil;
         this.memberRepository = memberRepository;
+        this.accountService = accountService;
     }
 
 
@@ -45,15 +47,20 @@ public class TransactionService {
 
         Transaction saveTransaction =  transactionRepository.save(transaction);
 
-        //update account Balance.
-        Optional<Account> account = this.accountRepository.findById(saveTransaction.getAccountId());
+        //update account Balance and insert statements.
 
-        account.get().setBalance(account.get().getBalance() + saveTransaction.getAmount());
-        log.info("Account  To Adjust: {}", account);
+       // Optional<Account> account = this.accountService.getAccountById(saveTransaction.getAccountId());
 
-        //this.accountRepository.save(account);
+       // account.get().setBalance(account.get().getBalance() + saveTransaction.getAmount());
+
+        log.info("About to update Account Transacted");
+
+        Account updatedAccount = this.accountService.updateAccountBalance(saveTransaction.getAccountId(),saveTransaction.getAmount());
+
+        log.info("About to update Account Transacted: " + updatedAccount.getId() +"current balance " +updatedAccount.getBalance());
 
         //send Sms to member
+
         Optional<Member> member =  this.memberRepository.findById(transaction.getMemberId());
 
         log.info("Member Transacted: {}", member);
