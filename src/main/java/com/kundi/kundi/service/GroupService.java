@@ -95,7 +95,7 @@ public class GroupService {
         account.setName(registeredGroup.getName() + " Main Account");
         account.setBalance(0.0);
         account.setCurrencyCode("KES");
-        account.setAccountType(AccountType.MAIN);
+        account.setAccountType(AccountType.SAVINGS);
         account.setCreatedOn(LocalDate.now().toString());
         account.setUuid(UUID.randomUUID().toString());
 

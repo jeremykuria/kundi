@@ -43,7 +43,7 @@ public class AccountStatement {
     @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
 
-    private Long accountId;
+    private Integer accountId;
 
     private String mac;
 
@@ -143,11 +143,11 @@ public class AccountStatement {
         this.transactionType = transactionType;
     }
 
-    public Long getAccountId() {
+    public Integer getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Long accountId) {
+    public void setAccountId(Integer accountId) {
         this.accountId = accountId;
     }
 
